@@ -111,42 +111,5 @@
 </section>
 
 <footer class="footer">© 2025 Flowwin International Trading Co., Ltd. | www.flowwin.com | flowwintrade@outlook.com</footer>
-
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  function removeByText(text){
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, null);
-    let nodes=[];
-    while(walker.nextNode()){
-      const el = walker.currentNode;
-      if(el.textContent && el.textContent.trim().includes(text)){
-        nodes.push(el);
-      }
-    }
-    nodes.forEach(el=>{
-      // remove nearest block/section that contains those buttons
-      let p = el;
-      for(let i=0;i<5 && p && p.parentElement;i++){
-        if(p.tagName==='SECTION' || p.classList.contains('card') || p.classList.contains('cta') ){
-          p.remove();
-          return;
-        }
-        p = p.parentElement;
-      }
-      // fallback: remove the element itself
-      el.remove();
-    });
-  }
-  removeByText('View Brochure');
-  removeByText('Contact Us');
-  // If multiple "Core Culture" headings, keep the first and remove the rest
-  const heads = Array.from(document.querySelectorAll('h3')).filter(h=>h.textContent.trim()==='Core Culture');
-  heads.slice(1).forEach(h=>{
-    const sec = h.closest('section');
-    (sec||h).remove();
-  });
-});
-</script>
-
 </body>
 </html>
